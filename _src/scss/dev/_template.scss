@@ -1,0 +1,238 @@
+@use "../global"as global;
+
+.pag-template {}
+
+.b-template {
+	&__wrap {
+		padding-top: 10rem;
+		padding-bottom: 10rem;
+		// max-width: 1000px;
+	}
+
+	&__inner {}
+
+	&__content {
+		display: table;
+		margin-bottom: 10rem;
+		width: 100%;
+
+		@include global.media(sp) {
+			display: block;
+		}
+
+		&__head {
+			display: table-cell;
+			vertical-align: top;
+			width: 25%;
+
+			@include global.media(sp) {
+				display: block;
+				margin-bottom: 2rem;
+			}
+
+		}
+
+		&__body {
+			display: table-cell;
+			vertical-align: top;
+
+			@include global.media(sp) {
+				display: block;
+			}
+		}
+	}
+
+	&__title {
+		&__en {
+			display: block;
+			@include global.font(11px, 500, 0.02em, 1.6, global.$en_go);
+
+		}
+
+		&__jp {
+			display: block;
+			@include global.font(11px, global.$fw, 0.02em, 1.6, global.$en_go);
+			color: var(--SubText);
+		}
+	}
+
+	&__guide {
+		display: block;
+		padding-top: 0.5rem;
+		@include global.font(11px, global.$fw, 0.02em, 1.6, global.$en_go);
+		color: var(--SubText);
+	}
+
+	&__list {
+		&__logo {
+			>ul {
+				>li {
+					width: 100%;
+					display: block;
+					margin-bottom: 3rem;
+					max-width: 500px;
+				}
+			}
+		}
+
+		&__color {
+			>ul {
+				@include global.flex(flex-start, flex-start);
+				@include global.list(6, 2rem);
+
+				@include global.media(sp) {
+					@include global.list(3, 1rem);
+				}
+
+				>li {
+					margin-bottom: 1rem;
+					// text-align: center;
+				}
+			}
+
+			&__swatch {
+				display: block;
+				margin-right: auto;
+
+				&:before {
+					content: '';
+					padding-top: 100%;
+					width: 100%;
+					display: block;
+				}
+			}
+		}
+
+		&__word,
+		&__link,
+		&__hover {
+			>ul {
+				@include global.flex(flex-start, flex-start);
+				@include global.list(3, 2rem);
+
+				@include global.media(sp) {
+					@include global.list(3, 1rem);
+
+				}
+
+				>li {
+					margin-bottom: 3rem;
+
+					@include global.media(sp) {
+						width: 50%;
+
+						&:nth-child(3n) {
+							width: 100%;
+
+						}
+					}
+
+					// text-align: center;
+				}
+			}
+		}
+
+		&__icon {
+			>ul {
+				font-size: 0;
+
+				&+ul {
+					margin-top: 2rem;
+				}
+
+				>li {
+					display: inline-block;
+					width: 10%;
+					margin-bottom: 1rem;
+					text-align: center;
+
+					@include global.media(sp) {
+						width: 10%;
+					}
+
+					svg {
+						width: 2rem;
+						height: 2rem;
+						display: inline-block;
+
+					}
+				}
+			}
+		}
+
+		&__img {
+			>ul {
+				@include global.flex(flex-start, flex-start);
+				@include global.list(3, 2rem);
+
+				@include global.media(sp) {
+					@include global.list(2, 1rem);
+
+				}
+
+				>li {
+					margin-bottom: 3rem;
+
+
+
+					// text-align: center;
+				}
+			}
+		}
+
+		&__text {
+			>ul {
+				>li {
+					margin-bottom: 2rem;
+				}
+			}
+		}
+	}
+}
+
+div#CopySign {
+	color: #ffffff;
+	position: fixed;
+	margin-top: -5px;
+	cursor: pointer;
+	top: 0;
+	left: 0;
+	width: 100px;
+	margin-left: -50px;
+	pointer-events: none;
+	mix-blend-mode: normal;
+	@include global.font(10px, bold, 0.08em, 10px, global.$ff);
+	display: block;
+	z-index: 9999999999999; // transition: all 0.15s ease-out;
+	transform-origin: center center;
+	transition: opacity 200ms cubic-bezier(0.25, 0.1, 0.25, 1) 0ms;
+	text-align: center;
+	opacity: 0;
+
+	&.is-copy {
+		&:before {
+			display: none;
+		}
+
+		&:after {
+			display: inline-block;
+		}
+	}
+
+	&:before,
+	&:after {
+		padding: 3px;
+	}
+
+	&:before {
+		content: "クリックでコピー";
+		background-color: rgba(0, 0, 0, 0.9);
+		display: inline-block;
+	}
+
+	&:after {
+		content: "コピー完了";
+		background-color: rgba(200, 0, 0, 0.9);
+		display: none;
+	}
+}

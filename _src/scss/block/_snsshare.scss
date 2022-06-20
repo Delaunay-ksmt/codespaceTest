@@ -1,0 +1,76 @@
+@use "../global"as global;
+
+.b-snsshare {
+  $hatebuw: 1.8rem;
+  $snsiconw: 3rem;
+  @include global.flex(center, center);
+
+  li+li {
+    margin-left: 1rem;
+  }
+
+  li {
+    a {
+      width: $snsiconw;
+      height: $snsiconw;
+      color: #fff;
+      text-align: center;
+      display: block;
+      border-radius: 100%;
+      transition: opacity 400ms cubip-bezier(0.25, 0.1, 0.25, 1) 0ms,
+        visibility 400ms cubip-bezier(0.25, 0.1, 0.25, 1) 0ms;
+      opacity: 1;
+      position: relative;
+
+      span {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+      }
+
+      svg {
+        position: absolute;
+        fill: #fff;
+        top: 50%;
+        left: 50%;
+        width: 60%;
+        height: 60%;
+        transform-origin: center center;
+        transform: translate(-50%, -50%) rotate(0deg) scale(1, 1);
+      }
+
+      @include global.media(pc) {
+        &:hover {
+          opacity: 0.5;
+        }
+      }
+    }
+
+    $snslist: ("fb": #3b5998,
+      "tw": #55acee,
+      "gplus": #dd4b39,
+      "feedly": #6cc655,
+      "line": #00c300,
+      "hatena": #008fde,
+      "rss": #ff8c00,
+      "pocket": #ee4056,
+      "youtube": #cd201f,
+      "wp": #21759b,
+      "dropbox": #007ee5,
+      "pinterest": #ce0f19,
+      "evernote": #79bd28,
+    );
+
+    @each $key,
+    $snscolor in $snslist {
+      &.#{$key} a {
+        background: $snscolor;
+
+        // span {
+        //   @include global.icon(1.4rem, 1.4rem, "../img/icon/w/#{$key}");
+        // }
+      }
+    }
+  }
+}

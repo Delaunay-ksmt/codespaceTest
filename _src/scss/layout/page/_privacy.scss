@@ -1,0 +1,92 @@
+@use "../../global"as global;
+.b-privacy {
+  counter-reset: term;
+
+  h2 {
+    @include global.font(global.pow(2) + rem, 700, 0.04em, 1.8, global.$ff);
+    margin-top: 2rem;
+    margin-bottom: 0.5rem;
+    padding-top: 2rem;
+    border-top: 1px solid var(--Light);
+
+    &:before {
+      counter-increment: term;
+      content: counter(term) ". ";
+    }
+  }
+
+  h3 {
+    @include global.font(global.pow(1) + rem, 700, 0.04em, 1.8, global.$ff);
+    margin-top: 2rem;
+    margin-bottom: 0.5rem;
+  }
+
+  p {
+    @include global.font(global.pow(0) + rem, global.$fw, global.$ls, global.$lh, global.$ff);
+  }
+
+  ul {
+    li {
+      position: relative;
+      padding-left: 1rem;
+      @include global.font(global.pow(0) + rem, global.$fw, global.$ls, global.$lh, global.$ff);
+      margin-bottom: 0.5rem;
+
+      &:before {
+        content: "・";
+        position: absolute;
+        top: 0;
+        left: 0;
+        @include global.font(global.pow(0) + rem, global.$fw, global.$ls, global.$lh, global.$ff);
+      }
+    }
+  }
+
+  &__contact {
+    border-top: 1px solid var(--Light);
+    border-bottom: 1px solid var(--Light);
+    margin-top: 3rem;
+    display: table;
+    width: 100%;
+    background-color: #fff;
+
+    @include global.media(sp) {
+      display: block;
+      padding: 2rem 0;
+    }
+
+    dt {
+      // background-color: color(4,'g');
+      display: table-cell;
+      vertical-align: center;
+      padding: 2rem;
+      width: 30%;
+      border-right: 1px solid var(--Light);
+      @include global.font(global.pow(0) + rem, global.$fw, global.$ls, global.$lh, global.$ff);
+
+      @include global.media(sp) {
+        display: block;
+        width: 100%;
+        padding: 0 2rem;
+        margin-bottom: 1rem;
+      }
+    }
+
+    dd {
+      display: table-cell;
+      vertical-align: center;
+      padding: 2rem;
+      @include global.font(global.pow(0) + rem, global.$fw, global.$ls, global.$lh, global.$ff);
+
+      @include global.media(sp) {
+        display: block;
+        width: 100%;
+        padding: 0 2rem;
+      }
+    }
+  }
+
+  &__link {
+    // @extend .p-link__c1;
+  }
+}

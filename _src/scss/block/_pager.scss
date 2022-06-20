@@ -1,0 +1,102 @@
+@use "../global"as global;
+
+.b-pager {
+	&__num {
+
+		// padding: 2rem 0;
+		ul {
+			// @include global.flex(center, center);
+			text-align: center;
+
+			li {
+				display: inline-block;
+
+				a,
+				div {
+					padding: 10px 20px;
+
+					span {
+						@include global.font(13px, 500, 0em, 1, global.$en_go);
+						display: inline-block;
+						position: relative;
+
+						@include global.media(tb) {
+							font-size: 13px;
+						}
+
+						@include global.media(sp) {
+							font-size: 12px;
+						}
+
+						&:after {
+							content: '';
+							width: 100%;
+							height: 1px;
+							position: absolute;
+							bottom: -5px;
+							left: 0%;
+							background-color: var(--Title);
+						}
+					}
+				}
+
+				a {
+					color: var(--SubText);
+
+					@include global.media(pc) {
+						&:hover {
+							color: var(--Title);
+						}
+					}
+
+					span {
+						&:after {
+							opacity: 0;
+						}
+					}
+				}
+
+				div {
+					font-weight: 500;
+				}
+			}
+		}
+	}
+
+	&__arr {
+		padding: 2rem 0;
+
+		&__index {
+			@extend .p-link__s;
+			@extend .hv-link__key__r;
+		}
+
+		&__prev,
+		&__next {
+			@extend .p-link__s;
+			@extend .hv-link__key__r;
+		}
+
+		ul {
+			@include global.flex(space-between, center);
+
+			li {
+				&:nth-child(1) {
+					text-align: left;
+				}
+
+				&:nth-child(2) {
+					text-align: center;
+				}
+
+				&:nth-child(3) {
+					text-align: right;
+				}
+			}
+
+			a {
+				font-weight: 500;
+			}
+		}
+	}
+}

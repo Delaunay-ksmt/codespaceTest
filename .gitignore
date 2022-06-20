@@ -1,0 +1,21 @@
+# Add any directories, files, or patterns you don't want to be tracked by version control
+node_modules
+_bk
+*.log
+.DS_Store
+# _public/*
+# _public_wp/*
+#_public/assets/css/
+#_public/assets/js/
+#_public_wp/app/public/wp-content/themes/delaunay/assets/css/
+#_public_wp/app/public/wp-content/themes/delaunay/assets/js/
+_public_wp/*
+# !_public_wp/app/
+# _public_wp/app/*
+# !_public_wp/app/public/
+# _public_wp/app/public/*
+# !_public_wp/app/public/wp-content/
+# _public_wp/app/public/wp-content/*
+# !_public_wp/app/public/wp-content/themes
+# _public_wp/app/public/wp-content/themes/*
+# !_public_wp/app/public/wp-content/themes/delaunay

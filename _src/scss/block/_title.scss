@@ -1,0 +1,55 @@
+@use "../global"as global;
+
+.b-title {
+	&__page {
+		margin-bottom: 5rem;
+
+		&__title {
+			@extend .p-txt__en--1;
+			line-height: 1;
+			display: block;
+		}
+
+		&__subtitle {
+			@extend .p-txt--p;
+			font-weight: 500;
+			display: block;
+		}
+
+		&__lead {
+			@extend .p-txt--5;
+			display: block;
+		}
+
+		&__text {
+			@extend .p-txt--cap;
+			display: block;
+		}
+	}
+
+	&__sec {
+		margin-bottom: 2rem;
+
+		&__title {
+			@extend .p-txt__en--2;
+			line-height: 1;
+			display: block;
+		}
+
+		&__subtitle {
+			@extend .p-txt--p;
+			font-weight: 500;
+			display: block;
+		}
+
+		&__lead {
+			@extend .p-txt--5;
+			display: block;
+		}
+
+		&__text {
+			@extend .p-txt--cap;
+			display: block;
+		}
+	}
+}

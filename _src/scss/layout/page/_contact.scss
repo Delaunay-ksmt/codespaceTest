@@ -1,0 +1,175 @@
+@use "../../global"as global;
+.b-contact {
+    &__dlwrap {
+        dl {
+            display: table;
+            width: 100%;
+            margin-bottom: 1.5rem;
+
+            @include global.media(sp) {
+                display: block;
+            }
+
+            &>* {
+                display: table-cell;
+                vertical-align: top;
+
+                @include global.media(sp) {
+                    display: block;
+                }
+            }
+        }
+
+        dt,
+        dd {
+            @extend .p-txt--p;
+        }
+
+        dt {
+            width: 15rem;
+            // line-height: $forminput_h;
+            font-weight: 500;
+
+            @include global.media(tb) {
+                width: 12rem;
+            }
+
+            @include global.media(sp) {
+                width: 100%;
+            }
+
+            span {
+                font-weight: 500;
+            }
+        }
+
+        .p-cap {
+            margin-top: 0.5rem;
+            @extend .p-txt--cap;
+        }
+
+        .error {
+            color: red;
+        }
+    }
+
+    &__check {
+        @extend .p-txt--p;
+        text-align: center;
+        padding-top: 1rem;
+        padding-bottom: 2rem;
+    }
+
+    &__btn {
+        input {
+            @extend .p-btn__m;
+            @extend .hv-btn__positive;
+            max-width: 400px;
+            margin-left: auto;
+            margin-right: auto;
+            display: block;
+            width: 100%;
+        }
+
+        &__r {
+            input {
+                @extend .p-btn__m;
+                @extend .hv-btn__negative;
+                max-width: 400px;
+                margin-left: auto;
+                margin-right: auto;
+                display: block;
+                width: 100%;
+            }
+        }
+
+        &__wrap {
+            @include global.flex(center, center);
+
+            @include global.media(sp) {
+                flex-direction: column-reverse;
+            }
+
+            &>* {
+                width: 50%;
+
+                padding: 0 0.5rem;
+
+                @include global.media(sp) {
+                    width: 100%;
+
+                    margin-top: 0.5rem;
+                    margin-bottom: 0.5rem;
+                }
+            }
+
+            p {
+                display: none;
+            }
+        }
+    }
+
+    &__thanks {
+        max-width: 720px;
+        margin-left: auto;
+        margin-right: auto;
+
+        &__ttl {
+            text-align: center;
+            @extend .p-txt--4;
+            margin-bottom: 2rem;
+        }
+
+        &__txt {
+            @extend .p-txt--p;
+            margin-bottom: 2rem;
+        }
+
+        &__btn {
+            @extend .p-btn__m;
+            @extend .hv-btn__positive;
+
+            &.wrap {
+                text-align: center;
+                padding-top: 2rem;
+            }
+        }
+    }
+}
+
+.mw_wp_form_confirm {
+    .b-contact {
+        &__dlwrap {
+            padding-bottom: 4rem;
+
+            dl {
+
+                dt,
+                dd {
+                    vertical-align: top;
+                    @extend .p-txt--p;
+
+                    >* {
+                        @extend .p-txt--p;
+                    }
+                }
+
+                dt {
+                    span {
+                        font-weight: 500;
+                    }
+                }
+            }
+        }
+    }
+}
+
+.mw_wp_form_input {
+    .b-contact {
+        &__btn {
+            &__r {
+                display: none;
+            }
+        }
+    }
+}

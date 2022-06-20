@@ -1,0 +1,249 @@
+@use "variable"as var;
+@use "mixin"as mixin;
+@use "parts"as parts;
+@use "sass:math";
+$forminputpadding: 0rem 1rem;
+$forminput_h: 2.8rem;
+$formcolor_input: transparent;
+$formcolor_input_readonly: var(--Light);
+$formcolor_input_border: var(--Light);
+$formcolor_alert: var(--Key1);
+$chkicon: 24px;
+$chkedicon: 12px;
+
+.p-input {
+  @extend .p-txt;
+  border: 1px solid $formcolor_input_border;
+  background-color: $formcolor_input;
+  line-height: $forminput_h;
+  height: $forminput_h;
+  padding: $forminputpadding;
+  appearance: none;
+  width: 100%;
+  display: inline-block;
+
+  &:read-only {
+    background-color: $formcolor_input_readonly;
+  }
+
+  &[type="date"] {
+
+    &::-webkit-inner-spin-button,
+    &::-webkit-clear-button {
+      -webkit-appearance: none;
+    }
+  }
+
+  &__wrap {
+    @include mixin.flex(flex-start, center);
+    width: calc(100% + 1rem);
+    margin-left: -0.5rem;
+
+    &>* {
+      flex: 1;
+      margin: 0.5rem;
+    }
+
+    p {
+      width: auto;
+      flex: initial;
+      display: block;
+      text-align: center;
+    }
+  }
+
+  &__ok {
+    border: 1px solid var(--Key1);
+  }
+
+  &__ng {
+    border: 1px solid var(--Key1);
+  }
+
+  &__error {
+    color: var(--Key1);
+    @include mixin.font(0.9rem, var.$fw, var.$ls, var.$lh, var.$ff);
+    display: inline-block;
+    margin-bottom: 0.5rem;
+  }
+}
+
+.p-textarea {
+  @extend .p-input;
+  line-height: 1.8;
+  padding: 1rem 1rem;
+  height: 14rem;
+}
+
+.p-select {
+  position: relative;
+  // max-width: 300px;
+  cursor: pointer;
+
+  @include mixin.media(pc) {
+    &:hover {
+      select {
+        color: var(--SubText) !important;
+        // border-color: var(--Light)!important;
+      }
+
+      svg {
+        fill: var(--Border);
+      }
+    }
+  }
+
+  svg {
+    width: 8px;
+    height: 8px;
+    position: absolute;
+    top: 50%;
+    right: 1rem;
+    transform-origin: center center;
+    transform: translate(0, -50%) rotate(90deg);
+    pointer-events: none;
+    fill: var(--Text);
+    transition: fill 200ms cubic-bezier(0.25, 0.1, 0.25, 1) 0ms;
+  }
+
+  select {
+    background-color: var(--Base2) !important;
+
+    position: relative;
+    text-overflow: "";
+    vertical-align: middle;
+    width: 100%;
+    color: var(--Text) !important;
+    border-color: var(--Light) !important;
+    @include mixin.font(1rem, 400, 0.06em, 2rem, var.$go);
+
+    text-transform: uppercase;
+    transition: color 200ms cubic-bezier(0.25, 0.1, 0.25, 1) 0ms,
+      border-color 200ms cubic-bezier(0.25, 0.1, 0.25, 1) 0ms !important;
+
+    @include mixin.media(sp) {
+      font-size: 10px;
+    }
+
+    &::-ms-expand {
+      display: none;
+    }
+
+    &:-moz-focusring {
+      color: transparent;
+      text-shadow: 0 0 0 #828c9a;
+    }
+  }
+}
+.p-radio,
+.p-checkbox {
+  label {
+    display: inline-block;
+    margin-right: 2.5rem;
+    padding-left: 2.3rem;
+    position: relative;
+    line-height: 3;
+    @extend .p-txt;
+    @extend .p-txt;
+    cursor: pointer;
+
+    &.v {
+      display: block;
+    }
+
+    input {
+      display: none;
+
+      &+span {
+        &::before {
+          content: "";
+          display: inline-block;
+          position: absolute;
+          box-sizing: border-box;
+          top: 50%;
+          left: 0;
+          margin-top: math.div($chkicon , -2);
+          width: $chkicon;
+          height: $chkicon;
+          border: 1px solid $formcolor_input_border;
+          background-color: $formcolor_input;
+          opacity: 1;
+          border-radius: 100%;
+          transition: opacity 400ms cubip-bezier(0.25, 0.1, 0.25, 1) 0ms;
+        }
+
+        &::after {
+          content: "";
+          display: inline-block;
+          position: absolute;
+          box-sizing: border-box;
+          top: 50%;
+          left: calc((#{$chkicon} - #{$chkedicon}) / 2);
+          margin-top: math.div($chkicon , -2);
+          width: $chkedicon;
+          height: $chkedicon;
+          background-color: transparent;
+          opacity: 1;
+          border-radius: 100%;
+          transition: background-color 400ms cubip-bezier(0.25, 0.1, 0.25, 1) 0ms,
+            border 400ms cubip-bezier(0.25, 0.1, 0.25, 1) 0ms;
+        }
+      }
+
+      &:checked+span {
+        &::after {
+          background-color: var(--Key1);
+        }
+      }
+    }
+  }
+}
+
+.p-checkbox {
+  label {
+    input {
+      &+span {
+        &::before {
+          border-radius: 0%;
+        }
+
+        &::after {
+          margin-top: math.div($chkedicon , -3);
+          height: math.div($chkedicon , 2);
+          border-radius: 0%;
+          transform-origin: center center;
+          transform: translate(0%, 0%) rotate(-45deg) scale(1, 1);
+        }
+      }
+
+      &:checked+span {
+        &::after {
+          background-color: transparent;
+          border-left: 2px solid var(--Key1);
+          border-bottom: 2px solid var(--Key1);
+        }
+      }
+    }
+  }
+}
+
+.p-add {
+  input+input {
+    margin-top: 0.5rem;
+  }
+}
+
+.p-zip {
+  @include mixin.flex(flex-start, center);
+
+  .p-input {
+    width: auto;
+    margin-right: 1rem;
+  }
+
+  .postal-search {
+    @extend .p-btn__s;
+    cursor: pointer;
+    vertical-align: middle;
+  }
+}

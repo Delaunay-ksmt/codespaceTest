@@ -1,0 +1,75 @@
+@use "global"as global;
+
+.b-faq {
+  border-bottom: 1px solid var(--Light);
+
+  &__dl {
+    border-top: 1px solid var(--Light);
+    position: relative;
+  }
+
+  &__dt {
+    $iconh: 2rem;
+    $padding: 2rem;
+    padding: $padding 0;
+    padding-right: 3rem;
+    position: relative;
+    @include global.font(global.pow(0) + rem, global.$fw, global.$ls, global.$lh, global.$ff);
+    cursor: pointer;
+
+    &::before,
+    &::after {
+      content: "";
+      width: 18px;
+      height: 2px;
+      background-color: var(--Light);
+      display: block;
+      position: absolute;
+      right: 1rem;
+      top: 2.6rem;
+      margin-top: -1px;
+      transition: transform 200ms cubic-bezier(0.25, 0.1, 0.25, 1) 0ms;
+    }
+
+    &::after {
+      transform: translate(0, 0) rotate(90deg);
+    }
+
+    &.is-active {
+      &::before {
+        transform: translate(0, 0) rotate(135deg);
+      }
+
+      &::after {
+        transform: translate(0, 0) rotate(225deg);
+      }
+    }
+
+    span {
+      padding-left: 2.5rem;
+      position: relative;
+
+      &::before {
+        content: "Q";
+        position: absolute;
+        @include global.flex(center, center);
+        left: 0;
+        top: calc(1rem * #{global.$lh} - #{$iconh});
+        line-height: 1;
+        width: $iconh;
+        height: $iconh;
+        background-color: var(--Key1);
+        color: #fff;
+        text-align: center;
+        @include global.font(global.pow(0) + rem, 700, global.$ls, $iconh, global.$ff);
+      }
+    }
+  }
+
+  &__dd {
+    background-color: var(--Base);
+    padding-bottom: 2rem;
+    @include global.font(global.pow(0) + rem, global.$fw, global.$ls, global.$lh, global.$ff);
+    margin-bottom: 1rem;
+  }
+}

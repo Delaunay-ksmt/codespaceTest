@@ -1,0 +1,43 @@
+/* --------------------------------------------
+Setting Font - フォント設定
+--------------------------------------------*/
+$jp_go: 'Noto Sans JP',"游ゴシック Medium","Yu Gothic Medium","游ゴシック体",YuGothic,"游ゴシック","Yu Gothic","YuGothic","ヒラギノ角ゴ Pro","Hiragino Kaku Gothic Pro",Osaka,"ＭＳ Ｐゴシック","MS PGothic","メイリオ","Meiryo",sans-serif;
+$jp_min: 游明朝,"Yu Mincho",YuMincho,"Hiragino Mincho ProN",HGS明朝E,メイリオ,Meiryo,serif;
+$en_go: "Roboto",sans-serif;
+$en_min: "Times New Roman","Georgia",serif;
+$min:"Times New Roman",$jp_min;
+$go:"Roboto",$jp_go;
+
+//基本フォント設定
+$ff: $jp_go; //基本フォント
+$lh: 2; //基本行間
+$fw: 400; //基本文字太さ
+$ls: 0.06em; //基本文字間
+$font_size_pc: 14px; //PCフォントサイズ
+$font_size_tb: 13px; //TBフォントサイズ
+$font_size_sp: 12px; //フォントサイズ
+$font_ratio: 1.2;
+// $trans: 200ms;
+// $trans_long: 400ms;
+
+/* --------------------------------------------
+Setting Color - カラー設定
+--------------------------------------------*/
+:root {
+	@for $i from 0 through 100 {
+		$n: $i;
+		--l#{$n} : hsla(0, 0%, #{$n}%, 1);
+	}
+
+	--Title:var(--l0);
+	--Text:var(--l20);
+	--SubText:var(--l45);
+	--Border:var(--l80);
+	--Light:var(--l90);
+	--Key1:red;
+	--Key2:green;
+	--Key3:black;
+	--Base:var(--l98);
+	--Base2:var(--l95);
+	--Base3:var(--l90);
+}

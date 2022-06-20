@@ -1,0 +1,171 @@
+@use "variable"as var;
+@use "sass:math";
+/* -----------------------
+メディアクエリ
+@include global.media(pc) {} //860px以上
+@include global.media(tb) {} //860以下
+@include global.media(sp) {} // 680以下
+-----------------------*/
+$tb: 1000px;
+$sp: 680px;
+@mixin media($media-width) {
+  @if $media-width==sp {
+    @media only screen and (max-width: $sp) {
+      @content;
+    }
+  }
+
+  @else if $media-width==tb {
+    @media only screen and (max-width: $tb) {
+      @content;
+    }
+  }
+
+  @else if $media-width==pc {
+    @media only screen and (min-width: $tb) {
+      @content;
+    }
+  }
+}
+
+/* -----------------------
+
+flex基本設定
+ @include global.flex(space-between,center);
+
+-----------------------*/
+@mixin flex($jc: flex-start, $ai: stretch) {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: $jc;
+  align-items: $ai;
+  width: 100%;
+}
+
+/* -----------------------
+
+blogのindexなどのリスト組。ulなどwrapper要素ににつける
+ @include global.list(3,2rem);
+
+-----------------------*/
+@mixin list($col: 3, $padd-lr: 2rem) {
+  width: calc(100% - 1px + #{$padd-lr});
+  margin-left: math.div($padd-lr, -2);
+
+  &>* {
+    width: math.div(100%, $col);
+    padding-left: math.div($padd-lr, 2);
+    padding-right: math.div($padd-lr, 2);
+  }
+}
+
+/* -----------------------
+
+Grid for IE11
+@include global.flex(space-between,center);
+
+-----------------------*/
+@mixin grid($type, $start: 1, $span: 1) {
+  @if $type=="column" {
+    -ms-grid-column: $start;
+    -ms-grid-column-span: $span;
+    grid-column: $start / span $span;
+  }
+
+  @else {
+    -ms-grid-row: $start;
+    -ms-grid-row-span: $span;
+    grid-row: $start / span $span;
+  }
+}
+
+/* -----------------------
+
+fontサイズを設定する (weightやfamilyは端折らず記載する)
+@include global.font(global.pow(0), 700, 0.04em, 1.8, global.$ff);
+
+-----------------------*/
+@mixin font($size: 1rem, $weight: 400, $letter-spacing: 0.06em, $lign-height: 1.75, $family: "san-serif") {
+  font: {
+    size: $size;
+    weight: $weight;
+    family: $family;
+  }
+
+  letter-spacing: $letter-spacing;
+  line-height: $lign-height;
+}
+
+/* -----------------------
+べき乗の計算をする
+-----------------------*/
+@function pow($exp, $ratio: var.$font_ratio) {
+  $base: $ratio;
+  $value: 1;
+
+  @if $exp>=1 {
+    @for $i from 1 through $exp {
+      $value: $value * $base;
+    }
+  }
+
+  @else if $exp <=-1 {
+    @for $i from 1 through -$exp {
+      $value: math.div($value, $base);
+    }
+  }
+
+  @else {
+    $value: 1;
+  }
+
+  @return $value;
+}
+
+
+/* -----------------------
+
+cleafix
+@include clearfix;
+-----------------------*/
+@mixin clearfix {
+  _height: 1px;
+  min-height: 1px;
+
+  /*・･*/
+  /*/
+  height: auto;
+  overflow: hidden;
+  /**/
+  &:after {
+    height: 0;
+    visibility: hidden;
+    content: ".";
+    display: block;
+    clear: both;
+    font-size: 0;
+    line-height: 0;
+    overflow: hidden;
+  }
+}
+
+/* -----------------------
+
+icon画像を設定する
+@include icon(150px, 12px, "../img/common/logo");
+
+-----------------------*/
+@mixin icon($width: 20px, $height: 20px, $path: "../img/icon/xxx") {
+  display: inline-block;
+  width: $width;
+  height: $height;
+  background-repeat: no-repeat;
+  background-size: $width $height;
+  background-position: center;
+  background-image: url($path + ".png");
+  background-image: url($path + ".svg");
+  overflow: hidden;
+  text-indent: -99999999px;
+}
+
+

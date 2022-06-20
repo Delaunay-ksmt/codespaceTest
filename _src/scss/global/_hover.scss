@@ -1,0 +1,230 @@
+@use "variable"as var;
+@use "mixin"as mixin;
+
+.p-hv-op {
+	will-change: opacity;
+	transition: opacity 200ms cubic-bezier(0.250, 0.100, 0.250, 1.000) 0ms;
+
+	@include mixin.media(pc) {
+		&:hover {
+			opacity: 0.5;
+		}
+	}
+}
+
+
+@mixin hv_btn($color: var(--Base), $bgc: var(--Title), $bdc: var(--Title), $r_color: var(--Title), $r_bgc: var(--Base), $r_bdc: var(--Title)) {
+	color: $color;
+	background-color: $bgc;
+	border-color: $bdc;
+	@include mixin.media(pc) {
+
+		&:hover {
+			color: $r_color;
+			background-color: $r_bgc;
+			border-color: $r_bdc;
+			svg {
+				fill: $r_color;
+			}
+		}
+	}
+
+	svg {
+		fill: $color;
+	}
+}
+
+.p-btn {
+	$color: var(--Base);
+	$bgc: var(--Title);
+	$bdc: var(--Title);
+	$r_color: var(--Title);
+	$r_bgc: var(--Light);
+	$r_bdc: var(--Light);
+
+	transition: background-color 200ms cubic-bezier(0.250, 0.100, 0.250, 1.000) 0ms,
+		border-color 200ms cubic-bezier(0.250, 0.100, 0.250, 1.000) 0ms,
+		color 200ms cubic-bezier(0.250, 0.100, 0.250, 1.000) 0ms;
+	@include hv_btn($color, $bgc, $bdc, $r_color, $r_bgc, $r_bdc);
+
+	svg {
+		transition: fill 200ms cubic-bezier(0.250, 0.100, 0.250, 1.000) 0ms;
+	}
+
+	&.hv-btn {
+
+		&__key {
+			background-color: red !important;
+			$color: var(--Base);
+			$bgc: var(--Key1);
+			$bdc: var(--Key1);
+			$r_color: var(--Key1);
+			$r_bgc: var(--Base);
+			$r_bdc: var(--Key1);
+			@include hv_btn($color, $bgc, $bdc, $r_color, $r_bgc, $r_bdc);
+
+			&__r {
+				$color: var(--Key1);
+				$bgc: var(--Base);
+				$bdc: var(--Key1);
+				$r_color: var(--Base);
+				$r_bgc: var(--Key1);
+				$r_bdc: var(--Key1);
+				@include hv_btn($color, $bgc, $bdc, $r_color, $r_bgc, $r_bdc);
+			}
+
+			&__w {
+				$color: var(--Key1);
+				$bgc: var(--Base);
+				$bdc: var(--Base);
+				$r_color: var(--Base);
+				$r_bgc: var(--Key1);
+				$r_bdc: var(--Key1);
+				@include hv_btn($color, $bgc, $bdc, $r_color, $r_bgc, $r_bdc);
+			}
+		}
+
+		&__neutral {
+			$color: var(--Title);
+			$bgc: var(--Base);
+			$bdc: var(--Border);
+			$r_color: var(--Base);
+			$r_bgc: var(--Title);
+			$r_bdc: var(--Title);
+			@include hv_btn($color, $bgc, $bdc, $r_color, $r_bgc, $r_bdc);
+		}
+
+		&__negative {
+			$color: var(--Base);
+			$bgc: var(--SubText);
+			$bdc: var(--SubText);
+			$r_color: var(--Base);
+			$r_bgc: var(--Border);
+			$r_bdc: var(--Border);
+			@include hv_btn($color, $bgc, $bdc, $r_color, $r_bgc, $r_bdc);
+		}
+
+		&__positive {
+			@extend .hv-btn__key;
+		}
+
+		&__disable {
+			cursor: default;
+			$color: var(--SubText);
+			$bgc: var(--Light);
+			$bdc: var(--Light);
+			$r_color: var(--SubText);
+			$r_bgc: var(--Light);
+			$r_bdc: var(--Light);
+			@include hv_btn($color, $bgc, $bdc, $r_color, $r_bgc, $r_bdc);
+		}
+
+
+	}
+}
+
+@mixin hv_link($color: var(--Base), $bdc: var(--Title), $r_color: var(--Title), $r_bdc: var(--Title)) {
+	color: $color;
+	border-color: $bdc;
+
+	@include mixin.media(pc) {
+		&:hover {
+			color: $r_color;
+			border-color: $r_bdc;
+
+			&::after {
+				width: 0%;
+				left: 100%;
+				background-color: $r_bdc;
+				transition: width 0ms cubic-bezier(0.250, 0.100, 0.250, 1.000) 200ms,
+					left 200ms cubic-bezier(0.250, 0.100, 0.250, 1.000) 0ms,
+					background-color 200ms cubic-bezier(0.250, 0.100, 0.250, 1.000) 0ms;
+			}
+
+			svg {
+				fill: $r_color;
+			}
+		}
+	}
+
+	&:after {
+		background-color: $bdc;
+		transition: width 200ms cubic-bezier(0.250, 0.100, 0.250, 1.000) 0ms,
+			left 0ms cubic-bezier(0.250, 0.100, 0.250, 1.000) 0ms,
+			background-color 200ms cubic-bezier(0.250, 0.100, 0.250, 1.000) 0ms;
+	}
+
+	svg {
+		fill: $color;
+	}
+}
+
+.p-link {
+	transition: color 200ms cubic-bezier(0.250, 0.100, 0.250, 1.000) 0ms;
+
+	@include mixin.media(pc) {
+		&:hover {
+			&::after {
+				width: 0%;
+				left: 100%;
+				transition: width 0ms cubic-bezier(0.250, 0.100, 0.250, 1.000) 200ms,
+					left 200ms cubic-bezier(0.250, 0.100, 0.250, 1.000) 0ms;
+				// opacity: 0;
+			}
+		}
+	}
+
+	&:after {
+		content: '';
+		width: 100%;
+		height: 1px;
+		background-color: var(--Title);
+		position: absolute;
+		bottom: 0;
+		width: 100%;
+		left: 0;
+		transition: width 200ms cubic-bezier(0.250, 0.100, 0.250, 1.000) 0ms,
+			left 0ms cubic-bezier(0.250, 0.100, 0.250, 1.000) 0ms;
+
+	}
+
+	&.tdn {
+		&:after {
+			display: none;
+		}
+	}
+
+	&.hv-link {
+		&__key {
+			$color: var(--Key1);
+			$bdc: var(--Key1);
+			$r_color: var(--SubText);
+			$r_bdc: var(--SubText);
+			@include hv_link($color, $bdc, $r_color, $r_bdc);
+
+			&__r {
+				$color: var(--Title);
+				$bdc: var(--Title);
+				$r_color: var(--Key1);
+				$r_bdc: var(--Key1);
+				@include hv_link($color, $bdc, $r_color, $r_bdc);
+			}
+
+			&__w {
+				$color: var(--Key1);
+				$bdc: var(--Key1);
+				$r_color: var(--Base);
+				$r_bdc: var(--Base);
+				@include hv_link($color, $bdc, $r_color, $r_bdc);
+			}
+		}
+
+		&__w {
+			$color: var(--Base);
+			$bdc: var(--Base);
+			$r_color: var(--SubText);
+			$r_bdc: var(--SubText);
+			@include hv_link($color, $bdc, $r_color, $r_bdc);
+		}
+	}
+}

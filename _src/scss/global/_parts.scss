@@ -1,0 +1,656 @@
+@use "variable"as var;
+@use "mixin"as mixin;
+@use "hover"as hover;
+@use "sass:math";
+
+.p-svg {
+  position: relative;
+  display: block;
+  font-size: 0;
+  line-height: 0;
+  user-select: none;
+  overflow: hidden;
+
+  &:before {
+    content: "";
+    width: 100%;
+    display: block;
+    position: relative;
+    z-index: 0;
+  }
+
+  svg {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    display: block;
+    z-index: 0;
+    top: 0;
+    left: 0;
+    fill: var(--Title);
+  }
+
+  >span {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    text-indent: -9999px;
+    top: 0;
+    left: 0;
+    display: block;
+  }
+
+  &__logo {
+    @extend .p-svg;
+    $w: 400;
+    $h: 62;
+    $ratio: math.div($h, $w);
+
+    &:before {
+      padding-top: $ratio * 100%;
+    }
+  }
+
+  &__logo2 {
+    @extend .p-svg;
+    $w: 400;
+    $h: 32;
+    $ratio: math.div($h, $w);
+
+    &:before {
+      padding-top: $ratio * 100%;
+    }
+  }
+
+  &__logo3 {
+    @extend .p-svg;
+    $w: 200;
+    $h: 200;
+    $ratio: math.div($h, $w);
+
+    &:before {
+      padding-top: $ratio * 100%;
+    }
+  }
+
+  &__logo4 {
+    @extend .p-svg;
+    $w: 200;
+    $h: 200;
+    $ratio: math.div($h, $w);
+
+    &:before {
+      padding-top: $ratio * 100%;
+    }
+  }
+
+  &__logo5 {
+    @extend .p-svg;
+    $w: 200;
+    $h: 200;
+    $ratio: math.div($h, $w);
+
+    &:before {
+      padding-top: $ratio * 100%;
+    }
+  }
+
+  &__icon {
+    @extend .p-svg;
+    $w: 32;
+    $h: 32;
+    $ratio: math.div($h, $w);
+
+    &__stroke {
+      @extend .p-svg;
+      $w: 32;
+      $h: 32;
+      $ratio: math.div($h, $w);
+
+      svg {
+        stroke: var(--Title);
+        stroke-width: calc((64 / #{$w}) * 1px);
+        fill: none;
+        stroke-linecap: butt; //butt,square,round
+        stroke-linejoin: round; //miter, bevel
+      }
+    }
+
+    &:before {
+      padding-top: $ratio * 100%;
+    }
+  }
+}
+
+.p-txt {
+  a {
+    text-decoration: underline;
+
+    @include mixin.media(pc) {
+      &:hover {
+        text-decoration: none;
+      }
+    }
+  }
+
+  &--1 {
+    @extend .p-txt;
+    @include mixin.font(mixin.pow(5)+rem, 500, var.$ls, 1.2, var.$ff);
+  }
+
+  &--2 {
+    @extend .p-txt;
+    @include mixin.font(mixin.pow(4)+rem, 500, var.$ls, 1.5, var.$ff);
+  }
+
+  &--3 {
+    @extend .p-txt;
+    @include mixin.font(mixin.pow(3)+rem, 500, var.$ls, 1.7, var.$ff);
+  }
+
+  &--4 {
+    @extend .p-txt;
+    @include mixin.font(mixin.pow(2)+rem, 500, var.$ls, 1.8, var.$ff);
+  }
+
+  &--5 {
+    @extend .p-txt;
+    @include mixin.font(mixin.pow(1)+rem, var.$fw, var.$ls, 1.9, var.$ff);
+  }
+
+  &--p {
+    @extend .p-txt;
+    @include mixin.font(mixin.pow(0)+rem, var.$fw, var.$ls, var.$lh, var.$ff);
+  }
+
+  &--cap {
+    @extend .p-txt;
+    @include mixin.font(var.$font_size_pc - 2px, var.$fw, var.$ls, var.$lh, var.$ff);
+
+    @include mixin.media(tb) {
+      font-size: var.$font_size_tb - 2px;
+    }
+
+    @include mixin.media(sp) {
+      font-size: var.$font_size_sp - 2px;
+    }
+  }
+
+  &--mini {
+    @include mixin.font(var.$font_size_pc - 3px, var.$fw, var.$ls, var.$lh, var.$ff);
+
+    @include mixin.media(tb) {
+      font-size: var.$font_size_tb - 3px;
+    }
+
+    @include mixin.media(sp) {
+      font-size: var.$font_size_sp - 3px;
+    }
+  }
+
+  &__en {
+    &--1 {
+      @extend .p-txt;
+      @include mixin.font(mixin.pow(7)+rem, 500, var.$ls, 1, var.$en_go);
+    }
+
+    &--2 {
+      @extend .p-txt;
+      @include mixin.font(mixin.pow(5)+rem, 500, var.$ls, 1.3, var.$en_go);
+    }
+
+    &--3 {
+      @extend .p-txt;
+      @include mixin.font(mixin.pow(4)+rem, 500, var.$ls, 1.4, var.$en_go);
+    }
+
+    &--4 {
+      @extend .p-txt;
+      @include mixin.font(mixin.pow(2)+rem, 500, var.$ls, 1.5, var.$en_go);
+    }
+
+    &--5 {
+      @extend .p-txt;
+      @include mixin.font(mixin.pow(1)+rem, 500, var.$ls, 1.5, var.$en_go);
+    }
+
+    &--p {
+      @extend .p-txt;
+      @include mixin.font(mixin.pow(0)+rem, var.$fw, var.$ls, 1.5, var.$en_go);
+    }
+
+    &--cap {
+      @extend .p-txt;
+      @include mixin.font(var.$font_size_pc - 2px, var.$fw, var.$ls, 1.5, var.$en_go);
+
+      @include mixin.media(tb) {
+        font-size: var.$font_size_tb - 2px;
+      }
+
+      @include mixin.media(sp) {
+        font-size: var.$font_size_sp - 2px;
+      }
+    }
+
+    &--mini {
+      @extend .p-txt;
+      @include mixin.font(var.$font_size_pc - 3px, var.$fw, var.$ls, 1.5, var.$en_go);
+
+      @include mixin.media(tb) {
+        font-size: var.$font_size_tb - 3px;
+      }
+
+      @include mixin.media(sp) {
+        font-size: var.$font_size_sp - 3px;
+      }
+    }
+  }
+}
+
+.p-attention {
+  ul {
+    li {
+      @extend .p-txt;
+      @include mixin.font(var.$font_size_pc - 2px, var.$fw, var.$ls, var.$lh, var.$ff);
+
+      @include mixin.media(tb) {
+        font-size: var.$font_size_tb - 2px;
+      }
+
+      @include mixin.media(sp) {
+        font-size: var.$font_size_sp - 2px;
+      }
+
+      &:last-child {
+        margin-bottom: 0;
+
+        @include mixin.media(sp) {
+          margin-bottom: 0;
+        }
+      }
+
+      >span {
+        position: relative;
+        display: block;
+        padding-left: 1.2em;
+
+        &:before {
+          content: "※";
+          position: absolute;
+          top: 0;
+          left: 0;
+        }
+      }
+    }
+  }
+}
+
+.p-word {
+  display: inline-block;
+  white-space: nowrap;
+  position: relative;
+  user-select: none;
+
+  &.arr {
+    svg {
+      width: 0.7em;
+      height: 0.7em;
+      transform-origin: center;
+      transform: translate(0, 0) rotate(180deg);
+
+      &+span {
+        margin-left: 10px;
+      }
+    }
+
+    >span {
+      &+svg {
+        transform: translate(0, 0) rotate(0deg);
+        margin-left: 10px;
+      }
+    }
+  }
+
+  svg {
+    width: 1.4em;
+    height: 1.4em;
+    display: inline-block;
+    vertical-align: middle;
+    position: relative;
+
+    &+span {
+      margin-left: 2px;
+    }
+  }
+
+  >span {
+    display: inline-block;
+    vertical-align: middle;
+
+    &+svg {
+      margin-left: 2px;
+    }
+  }
+
+  &__l {
+    @extend .p-word;
+    @include mixin.font(var.$font_size_pc + 2px, var.$fw, 0.16em, 1, var.$go);
+    vertical-align: middle;
+
+    @include mixin.media(tb) {
+      font-size: var.$font_size_tb + 2px;
+    }
+
+    @include mixin.media(sp) {
+      font-size: var.$font_size_sp + 2px;
+    }
+  }
+
+  &__m {
+    @extend .p-word;
+    @include mixin.font(mixin.pow(0)+rem, var.$fw, 0.16em, 1, var.$go);
+    vertical-align: middle;
+  }
+
+  &__s {
+    @extend .p-word;
+    @include mixin.font(var.$font_size_pc - 2px, var.$fw, 0.16em, 1, var.$go);
+    vertical-align: middle;
+
+    @include mixin.media(tb) {
+      font-size: var.$font_size_tb - 2px;
+    }
+
+    @include mixin.media(sp) {
+      font-size: var.$font_size_sp - 2px;
+    }
+  }
+}
+
+.p-link {
+  display: inline-block;
+  position: relative;
+  padding: 5px 0;
+  overflow: hidden;
+  user-select: none;
+
+  &__l {
+    @extend .p-link;
+    @extend .p-word;
+    @extend .p-word__l;
+    @extend .p-word;
+  }
+
+  &__m {
+    @extend .p-link;
+    @extend .p-word;
+    @extend .p-word__m;
+    @extend .p-word;
+  }
+
+  &__s {
+    @extend .p-link;
+    @extend .p-word;
+    @extend .p-word__s;
+    @extend .p-word;
+  }
+}
+
+.p-btn {
+    // display: block;
+    display: inline-block;
+    position: relative;
+
+    // width: 100%;
+    overflow: hidden;
+    text-align: center;
+    border: 1px solid;
+    user-select: none;
+    // カラーはhover.scss
+
+    svg {}
+
+    // @include mixin.media(pc) {
+    //     &:hover {}
+    // }
+
+    &__round {
+        // @extend .p-btn;
+
+        &__l {
+            padding: 1em 4em;
+            @extend .p-btn;
+            border-radius: 30px;
+            @extend .p-word__l;
+        }
+
+        &__m {
+            padding: 1em 3em;
+            @extend .p-btn;
+            border-radius: 30px;
+            @extend .p-word__m;
+        }
+
+        &__s {
+            padding: 0.5em 2em;
+            @extend .p-btn;
+            border-radius: 30px;
+            @extend .p-word__s;
+        }
+    }
+
+    &__l {
+        padding: 1em 4em;
+        @extend .p-btn;
+        @extend .p-word__l;
+    }
+
+    &__m {
+        padding: 1em 3em;
+        @extend .p-btn;
+        @extend .p-word__m;
+    }
+
+    &__s {
+        padding: 0.5em 2em;
+        @extend .p-btn;
+        @extend .p-word__s;
+    }
+}
+
+.p-img {
+  $ratioarr: 150,
+    120,
+    100,
+    75,
+    66,
+    56,
+    50,
+    33;
+
+  @each $ratio in $ratioarr {
+    &__r#{$ratio} {
+      // display: block;
+      background-color: #eee;
+      position: relative;
+      display: block;
+
+      >span {
+        position: relative;
+        z-index: 0;
+        display: block;
+        
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: cover;
+
+
+        @if $ratio==66 {
+          $ratio: 66.66;
+        }
+
+        @else if$ratio==33 {
+          $ratio: 33.33;
+        }
+
+        &::before {
+          content: "";
+          padding-top: $ratio * 100%;
+        }
+      }
+
+      &.link {
+        &::before {
+          content: "";
+          width: 100%;
+          height: 100%;
+          top: 0;
+          left: 0;
+          position: absolute;
+          z-index: 1;
+          background-color: #333333;
+          opacity: 0;
+          transition: opacity 400ms cubic-bezier(0.25, 0.1, 0.25, 1) 0ms;
+        }
+
+        &:after {
+          content: attr(data-text);
+          @include mixin.font(11px, 400, 0.16em, 20px, var.$go);
+          position: absolute;
+          z-index: 2;
+          margin-top: -10px;
+          top: 50%;
+          left: 0;
+          width: 100%;
+          text-align: center;
+          display: block;
+          color: #ffffff;
+          opacity: 0;
+          will-change: opacity;
+          letter-spacing: 0.3em;
+          transition: opacity 400ms cubic-bezier(0.25, 0.1, 0.25, 1) 0ms,
+            letter-spacing 400ms cubic-bezier(0.25, 0.1, 0.25, 1) 0ms;
+        }
+
+        @include mixin.media(pc) {
+          &:hover {
+            &:before {
+              opacity: 0.8;
+            }
+
+            &:after {
+              opacity: 1;
+              letter-spacing: 0.16em;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+.p-search {
+  width: 100%;
+  // background-color: var(--Light);
+  background-color: transparent;
+  position: relative;
+  height: 3rem;
+  border: 1px solid var(--Border);
+  border-radius: 30px;
+  overflow: hidden;
+  // max-width: 300px;
+
+  input[type="text"] {
+    @include mixin.font(1rem, 400, 0.06em, 3rem, var.$go);
+    position: relative;
+    padding: 0 3rem 0 1rem;
+    width: 100%;
+    color: var(--Text);
+    background-color: var(--Light);
+
+    &::placeholder {
+      color: var(--Border);
+    }
+  }
+
+  input[type="submit"] {
+    cursor: pointer;
+    background-color: transparent;
+    border: none;
+    text-indent: -9999px;
+    width: 3rem;
+    height: 3rem;
+    background-size: 2.5rem;
+    background-image: url(../img/common/search.png);
+    background-image: url(../img/common/search.svg);
+    background-repeat: no-repeat;
+    background-position: center center;
+    position: absolute;
+    background-color: var(--Key1);
+    right: 0rem;
+    top: 50%;
+    margin-top: -1.5rem;
+    transition: background-color 200ms cubic-bezier(0.25, 0.1, 0.25, 1) 0ms;
+
+    @include mixin.media(pc) {
+      &:hover {
+        background-color: var(--Border);
+      }
+    }
+  }
+}
+
+
+
+.p-table {
+  table {
+    border-top: 1px solid var(--Light);
+    width: 100%;
+
+    tr {
+      border-bottom: 1px solid var(--Light);
+    }
+
+    th {
+      white-space: nowrap;
+      background-color: var(--Base2);
+      width: 20%;
+
+      @include mixin.media(sp) {
+        width: 10px;
+      }
+    }
+
+    th,
+    td {
+      padding: 1rem;
+      text-align: left;
+      vertical-align: top;
+
+      * {
+        @include mixin.font(var.$font_size_pc - 1px, var.$fw, var.$ls, 1.8, var.$ff);
+        @include mixin.media(tb) {
+          font-size: var.$font_size_tb - 1px;
+        }
+        @include mixin.media(sp) {
+          font-size: var.$font_size_sp - 1px;
+        }
+      }
+    }
+
+    th {
+      * {
+        font-weight: 500;
+      }
+    }
+  }
+}
+
+
+.p-blockquote {
+  padding: 3rem;
+  background-color: #eee;
+}
+
+

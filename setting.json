@@ -1,0 +1,6 @@
+{
+  "wp": true,
+  "port": 8002,
+  "rootPath": "",
+  "jsCompileMode": false
+}

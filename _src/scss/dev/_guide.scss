@@ -1,0 +1,54 @@
+@use "../global"as global;
+body {
+	&.is-guide {
+		#Guide {
+			position: fixed;
+			top: 0;
+			height: 100%;
+			left: 0;
+			width: 100%;
+			z-index: 999999999;
+			pointer-events: none;
+			opacity: 1;
+
+			&:before {
+				content: "";
+				width: 100%;
+				position: absolute;
+				top: 50%;
+				left: 0%;
+				border-top: 1px dotted rgba(#888888, 0.5);
+			}
+
+			&:after {
+				content: "";
+				display: block;
+				position: absolute;
+				left: 5%;
+				top: 0%;
+				height: 100%;
+				width: 90%;
+				border-left: 1px dotted rgba(#888888, 0.5);
+				border-right: 1px dotted rgba(#888888, 0.5);
+			}
+
+			>span {
+				display: block;
+				position: relative;
+				height: 100%;
+				border-left: 1px dotted rgba(#888888, 0.5);
+				border-right: 1px dotted rgba(#888888, 0.5);
+				@extend .e-common_width;
+
+				&:before {
+					content: "";
+					height: 100%;
+					position: fixed;
+					top: 0;
+					left: 50%;
+					border-right: 1px dotted rgba(#888888, 0.5);
+				}
+			}
+		}
+	}
+}

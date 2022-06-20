@@ -1,0 +1,68 @@
+version: '3'
+
+services:
+  frontend:
+    image: node:16-alpine
+    # image: node:12
+    working_dir: /src
+    ports:
+      - 3000:3000
+    volumes:
+      - ./:/src
+    command: /bin/sh -c 'npm i && npx gulp docker'
+    tty: true
+    depends_on:
+      - web_heteml
+
+  web_heteml:
+    hostname: web_heteml
+    image: php:7.4-apache
+    ports:
+      - 80:80
+    volumes:
+      - ./_public:/var/www/html
+
+#   web_wordpress:
+#     image: wordpress:latest
+#     volumes:
+#       - ./_public_wp/themes/:/var/www/html/wp-content/themes/delaunay
+#     depends_on:
+#       - db
+#     ports:
+#       - "8001:80"
+#     restart: always
+#     environment:
+#       WORDPRESS_DB_HOST: db:3306
+#       WORDPRESS_DB_USER: wordpress
+#       WORDPRESS_DB_PASSWORD: wordpress
+#       TZ: Asia/Tokyo
+
+#   db:
+#     image: mysql:5.7
+#     platform: linux/x86_64
+#     volumes:
+#       - ./db_data:/var/lib/mysql
+#     restart: always
+#     # env_file: .env
+#     tty: true
+#     environment:
+#       MYSQL_ROOT_PASSWORD: somewordpress
+#       MYSQL_DATABASE: wordpress
+#       MYSQL_USER: wordpress
+#       MYSQL_PASSWORD: wordpress
+#       TZ: Asia/Tokyo
+
+#   phpmyadmin:
+#     image: phpmyadmin/phpmyadmin
+#     environment:
+#       - PMA_ARBITRARY=1
+#       - PMA_HOST=db
+#       - PMA_USER=wordpress
+#       - PMA_PASSWORD=wordpress
+#     ports:
+#       - 8002:80
+#     volumes:
+#       - ./phpmyadmin/sessions:/sessions
+
+# volumes:
+#   db_data:

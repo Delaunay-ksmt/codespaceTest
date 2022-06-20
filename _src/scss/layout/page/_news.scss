@@ -1,0 +1,214 @@
+@use "../../global"as global;
+.b-news {
+  &__index {
+    &__ul {}
+
+    &__li {
+      margin-bottom: 4rem;
+
+      a {
+        display: block;
+      }
+
+      @include global.media(tb) {
+        margin-bottom: 3rem;
+      }
+    }
+
+    &__dl {
+      display: table;
+      width: 100%;
+      border-top: 1px solid var(--Light);
+
+      @include global.media(sp) {
+        display: block;
+      }
+    }
+
+    &__txt {}
+
+    &__ttl {
+      @include global.font(global.pow(0) + rem, global.$fw, global.$ls, global.$lh, global.$ff);
+      display: table-cell;
+      padding: 1rem 0;
+      padding-left: 2rem;
+      @include global.font(global.pow(0) + rem, global.$fw, global.$ls, global.$lh, global.$ff);
+    }
+
+    &__date {
+      @include global.font(global.pow(0) + rem, 700, 0.04em, 1.8, global.$ff);
+      padding: 1rem 0;
+      position: relative;
+      display: table-cell;
+      vertical-align: top;
+      width: 10rem;
+
+      @include global.media(sp) {
+        display: block;
+        width: 100%;
+      }
+
+      &:before {
+        content: "";
+        width: 100%;
+        height: 1px;
+        left: 0;
+        top: -1px;
+        position: absolute;
+        display: block;
+        background-color: color(3, "g");
+      }
+    }
+
+    &__nothing {
+      background-color: #eee;
+      padding: 5rem;
+      text-align: center;
+      @extend .p-txt--4;
+    }
+  }
+
+  &__detail {
+    border-bottom: 1px solid var(--Light);
+
+    &:first-of-type {
+      border-top: 1px solid var(--Light);
+    }
+
+    &__wrap {
+      padding: 4rem 0rem 5rem;
+      background-color: #fff;
+      width: 100%;
+      display: table;
+
+      @include global.media(tb) {
+        display: block;
+
+        &>* {
+          display: block;
+          width: 100%;
+
+          &:first-child {
+            margin-bottom: 2rem;
+          }
+        }
+      }
+    }
+
+    &__head {
+      display: table-cell;
+      width: 20rem;
+      padding-right: 4rem;
+    }
+
+    &__main {
+      display: table-cell;
+    }
+
+    &__title {
+      @extend .p-txt--4;
+    }
+
+    &__date {
+      @extend .p-txt--p;
+    }
+
+    &__body {
+      &>* {
+        margin-bottom: 2rem;
+
+        &:first-of-type {
+          margin-top: 0;
+        }
+      }
+
+      em,
+      b {
+        font-size: 1.2em;
+        font-style: normal;
+        font-weight: 900;
+        color: var(--Key1);
+        padding: 0 2px 4px;
+        background: linear-gradient(transparent 50%, #fff 50%, #fff 80%, transparent 80%, transparent 100%);
+      }
+
+      &__title {
+        &--h2 {
+          @extend .p-txt--3;
+          @include global.font(global.pow(4) + rem, 700, 0.04em, 1.8, global.$ff);
+          margin-top: 5rem;
+
+          span {
+            display: inline-block;
+            padding: 0 2px;
+          }
+        }
+
+        &--h3 {
+          @extend .p-txt--4;
+          margin-top: 2rem;
+        }
+
+        &--h4 {
+          @extend .p-txt--5;
+          margin-top: 2rem;
+          margin-bottom: 1rem;
+
+          span {
+            border-bottom: 2px solid var(--Key1);
+          }
+        }
+      }
+
+      &__text {
+        @extend .p-txt--p;
+
+        a {
+          font-size: 1.1em;
+          color: var(--Key1);
+          text-decoration: underline;
+        }
+      }
+
+      &__cap {
+        li {
+          @include global.font(10px, global.$fw, global.$ls, global.$lh, global.$ff);
+        }
+      }
+
+      &__link {
+        &__link {
+          @extend .p-link;
+        }
+
+        &__button {
+          @extend .p-btn__m;
+          display: inline-block;
+
+          span {
+            color: #fff;
+          }
+        }
+      }
+
+      &__image {
+        margin: 3rem auto;
+        text-align: right;
+
+        img {
+          border-radius: 1rem;
+        }
+
+        span {
+          margin-top: 6px;
+          display: inline-block;
+          @include global.font(0.9rem, global.$fw, global.$ls, global.$lh, global.$ff);
+        }
+
+        &__bgimg {
+          @extend .p-img__r66;
+        }
+      }
+    }
+  }
+}
